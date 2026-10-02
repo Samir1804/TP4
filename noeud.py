@@ -1,6 +1,6 @@
 import math
 import matplotlib.pyplot as plt
-
+"""Représente un nœud dans un arbre d'expression mathématique."""
 class Noeud:
     def __init__(self, valeur, enfants=None):
         
@@ -11,15 +11,18 @@ class Noeud:
             self.enfants = enfants
 
     def ajouter_enfant(self, noeud_enfant):
+        """Ajoute un nœud enfant à la liste des enfants du nœud courant."""
         self.enfants.append(noeud_enfant)
 
     def afficher_polonais(self):
+        """Retourne la représentation de l'expression sous forme de chaîne en notation polonaise."""
         elements = [str(self.valeur)]
         for enfant in self.enfants:
             elements.append(enfant.afficher_polonais())
         return " ".join(elements)
 
     def evaluer(self, variables):
+        """Évalue numériquement l'expression selon un dictionnaire de variables donné."""
         # 1. Cas d'une constante numérique
         if isinstance(self.valeur, (int, float)):
             return float(self.valeur)
